@@ -1,0 +1,68 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<malloc.h>
+
+struct node
+{
+	int data;
+	struct node*next;
+}
+*head=NULL,*p,*t,*newnode;
+
+void display()
+{
+	if(head==NULL)
+	printf("The SLL is Empty");
+	else
+	{
+		for(p=head;p!=NULL;p=p->next)
+		printf("%d->",p->data);
+	}
+}
+void create() 
+{
+	int n,i,ele;
+	printf("number of element in the list:");
+	scanf("%d", &n);
+	for (i=0;i<n;i++)
+	{
+		printf("enter the element");
+		scanf("%d", &ele);
+		newnode=(struct node*)malloc(sizeof(struct node));
+		newnode->data=ele;
+		newnode->next=NULL;
+		if(head==NULL)
+		{
+			head=newnode;
+			p=head;
+		}
+		else
+		{
+			for(p=head;p->next!=NULL;p=p->next);
+			p->next=newnode;
+			p=newnode;
+		}
+	}
+}
+int main()
+{
+	int cho;
+	do
+	{
+		printf("\nMain Menu\n");
+		printf("\n1.create\n2.Display\n3.Exit");
+		printf("\n enter your choice:");
+		scanf("%d", &cho);
+		switch(cho)
+		{
+			case 1:create();
+			break;
+			case 2:display();
+			break;
+			case 3:exit(0);
+			
+			default:
+				printf("enter the number between 1 to 3");
+		}
+	}while(cho>=1 && cho<=3);
+}
