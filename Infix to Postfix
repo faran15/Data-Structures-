@@ -1,0 +1,55 @@
+#include<stdio.h>
+#include<ctype.h>
+#include<string.h>
+
+char stk[20];
+int top=-1;
+
+
+void push(char c)
+{
+	stk[++top]=c;
+}
+
+
+int pop()
+{
+	return(stk[top--]);	  	  
+}
+
+int main()
+{
+	char in[50],op;
+	int i,l,op1,op2,res;
+	
+	printf("Enter the string :");
+	gets(in);
+	
+	l=strlen(in);
+	
+	for(i=0;i<l;i++)
+	{   
+		if(isdigit(in[i])) 
+				push(in[i]-'0');
+		else
+		{
+			op=in[i];
+			op2=pop();
+			op1=pop();
+			
+			switch (op)
+			{
+				case'+':push(op1+op2);
+				break;
+				case'-':push(op1-op2);
+				break;
+				case'*':push(op1*op2);
+				break;
+				case'/':push(op1/op2);
+				break;
+			}
+	    }
+    }
+       res=pop();
+	   printf("the output = %d",res);	
+}
